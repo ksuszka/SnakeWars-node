@@ -1,4 +1,6 @@
 var settings = {
+    serverAddress:'localhost',
+    serverPort: 9977,
     login: "PL3"
 }
 
@@ -8,7 +10,7 @@ var _ = require('lodash');
 //var util = require('util');
 
 var client = new net.Socket();
-client.connect(9977, 'localhost', function() {
+client.connect(settings.serverPort, settings.serverAddress, function() {
     console.log('Connected');
 });
 
