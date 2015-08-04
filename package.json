@@ -1,0 +1,15 @@
+{
+  "name": "snake-wars-node",
+  "version": "1.0.0",
+  "description": "Starter project to play Snake Wars (https://github.com/ksuszka/SnakeWars) using node.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kszabelski@gmail.com",
+  "license": "ISC",
+  "dependencies": {
+    "lodash-node": "^3.10.1",
+    "net": "^1.0.2"
+  }
+}
