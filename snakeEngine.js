@@ -25,13 +25,8 @@ module.exports = function(mySnakeId) {
                 var move = moves[index];
                 moves.splice(index, 1);
 
-                var newHead = getSnakeNewHeadPosition(mySnake, move);
+                var newHead = getSnakeNewHeadPosition(mySnake, move, gameBoardState.boardSize);
 
-                console.log("test", _.some([{x: 1, y:2}, {x: 3, y:4}, {x: 4, y:5}, {x: 6, y:1}], function(p) {
-                    return p.x === 3 && p.y === 4;
-                }))
-
-                console.log("occuped", occupiedCells, "newhead", newHead)
                 var isOccuped = _.some(occupiedCells, function(p) {
                     return p.x === newHead.x && p.y === newHead.y;
                 });
@@ -62,7 +57,7 @@ module.exports = function(mySnakeId) {
         Right: { RIGHT: {x: 0, y: -1}, LEFT: {x:0, y:1}, STRAIGHT: {x:1, y:0} }
     }
 
-    var getSnakeNewHeadPosition = function(mySnake, move) {
+    var getSnakeNewHeadPosition = function(mySnake, move, boardSize) {
         var head = mySnake.head;
         var offsetsFromDir = offsets[mySnake.direction];
         if (!offsetsFromDir)
@@ -72,7 +67,7 @@ module.exports = function(mySnakeId) {
         if (!offset)
             throw "Invalid move. Use only LEFT, RIGHT, STRAIGHT to calc snakeNewHeadPosition"
 
-        return {x : head.x + offset.x, y: head.y + offset.y };
+        return {x : (head.x + offset.x + boardSize.width) % boardSize.width, y: (head.y + offset.y + boardSize.height) % boardSize.height };
     }
     
     var getRandomInt = function (min, max) {
